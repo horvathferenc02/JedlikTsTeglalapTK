@@ -6,21 +6,27 @@ export default class Content {
 
     public content(req: http.IncomingMessage, res: http.ServerResponse): void {
         // favicon.ico kérés kiszolgálása:
-        if (req.url === "/favicon.ico") {
-            res.writeHead(200, { "Content-Type": "image/x-icon" });
-            fs.createReadStream("favicon.ico").pipe(res);
-            return;
-        }
+        // if (req.url === "/favicon.ico") {
+        //     res.writeHead(200, { "Content-Type": "image/x-icon" });
+        //     fs.createReadStream("favicon.ico").pipe(res);
+        //     return;
+        // }
 
         res.writeHead(200, { "Content-Type": "text/html; charset=utf-8" });
-        res.write("<h1 style='color: red;'>Hello Node.js</h1>");
-        res.write("<h1 style='color: green;'>Hello TypeScript!</h1>");
-        res.write("<h1 style='color: blue;'>Hello Heroku!</h1>");
-        res.write("<h1 style='color: black;'>Hello Jedlik!</h1>");
+        res.write("<!DOCTYPE html>");
+        res.write("<html lang = 'hu'>");
+        // Weboldal fejrésze
+        res.write("<head>");
+        res.write("<title>TéglalapTK</title>");
 
-        res.write("<b>Fejlesztői környezet telepítésének leírása, forráskód GitHub repository:</b><br>");
-        res.write("<a href='https://github.com/nitslaszlo/JedlikTsTemplate' target='_blank'>" +
-            "https://github.com/nitslaszlo/JedlikTsTemplate</a><br>");
+        res.write("</head>");
+        res.write("<body>");
+        res.write("<h1> Téglalap kerülete és terüelte </h1>");
+        const a: number = 5; // number 64 bites lebegőponto szám
+        const b: number = 5;
+        res.write(`<h2>a=${a * b}</h2>`);
+        res.write("</body>");
+        res.write("</html>");
         res.end();
     }
 }
